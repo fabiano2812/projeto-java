@@ -1,7 +1,5 @@
 package utils;
 
-import org.apache.commons.lang.StringEscapeUtils;
-
 import javax.swing.text.MaskFormatter;
 import java.text.Normalizer;
 import java.text.ParseException;
@@ -15,20 +13,6 @@ public class StringUtils {
 
     public static boolean isNotEmpthOrNull(String text) {
         return text != null && !text.isEmpty() ? Boolean.TRUE : Boolean.FALSE;
-    }
-
-    public static String removerHTML(String html){
-        return StringEscapeUtils.unescapeHtml(html);
-    }
-
-    public static String retiraCaracteresEEspaco(String numero) {
-        if (numero == null) {
-            return null;
-        }
-
-        numero = numero.replaceAll("\\D*", "");
-        numero = numero.replaceAll("\\s", "");
-        return numero;
     }
 
     public static String standardize(String value) {

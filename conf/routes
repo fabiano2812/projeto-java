@@ -4,6 +4,7 @@
 
 # An example controller showing a sample home page
 GET     /                           controllers.Pessoas.abrirPaginaInicial()
+GET     /dashboard                  controllers.Dashboard.abrirDashboard()
 
 #PESSOAS
 GET     /pessoas                    controllers.Pessoas.abrirPaginaInicial()
