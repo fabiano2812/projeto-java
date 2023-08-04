@@ -1,0 +1,8 @@
+@(id: String, name: String,  label: String, value: Object, placeholder: String, spanSize: Integer, rows: Integer, maxLength: Integer)
+
+<div class="col-md-@spanSize">
+    <div class="form-group mb-3">
+        <label for="@id" class="control-label">@label</label>
+        <textarea class="form-control" id="@id" name="@name" placeholder="@placeholder" rows="@rows" @if(maxLength > 0){maxlength="@maxLength"}>@value</textarea>
+    </div>
+</div>

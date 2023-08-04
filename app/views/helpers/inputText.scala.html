@@ -1,0 +1,12 @@
+@(id: String, name: String, label: String, value: Object, placeholder: String, spanSize: Integer, maxLength: Integer)
+
+@import utils.StringUtils
+
+<div class="col-md-@spanSize">
+    <div class="form-group mb-3">
+        @if(StringUtils.isNotEmpthOrNull(label)) {
+            <label for="@id">@label</label>
+        }
+        <input id="@id" name="@name" type="text" class="form-control" value="@value" placeholder="@placeholder" autocomplete="off" @if(maxLength > 0){maxlength="@maxLength"}/>
+    </div>
+</div>

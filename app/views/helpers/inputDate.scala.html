@@ -1,0 +1,13 @@
+@(id: String, name: String,  label: String, value: java.util.Date, placeholder: String, spanSize: Integer)
+
+@import utils.StringUtils
+@import utils.DateUtil
+
+<div class="col-md-@spanSize">
+    <div class="form-group mb-3">
+        @if(StringUtils.isNotEmpthOrNull(label)) {
+            <label for="@id">@label</label>
+        }
+        <input  id="@id" name="@name" type="text" class="form-control date-input" autocomplete="off"  value="@DateUtil.formataData(value)" placeholder="@placeholder">
+    </div>
+</div>

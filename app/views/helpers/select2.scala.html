@@ -1,0 +1,14 @@
+@(id: String, name: String, label: String, spanSize: Integer)(value: Html)
+
+@import utils.StringUtils
+
+<div class="col-md-@spanSize">
+    <div class="form-group mb-3">
+        @if(StringUtils.isNotEmpthOrNull(label)) {
+            <label for="@id">@label</label>
+        }
+        <select id="@id" name="@name" class="form-control kt-select2">
+        @value
+        </select>
+    </div>
+</div>

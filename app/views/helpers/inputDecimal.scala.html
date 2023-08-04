@@ -1,0 +1,13 @@
+@(id: String, name: String,  label: String, value: java.math.BigDecimal, precision: Integer, placeholder: String, spanSize: Integer)
+
+@import utils.StringUtils
+@import utils.MoedaUtil
+
+<div class="col-md-@spanSize">
+    <div class="form-group mb-3">
+        @if(StringUtils.isNotEmpthOrNull(label)) {
+            <label for="@id">@label</label>
+        }
+        <input id="@id" name="@name" type="text" class="form-control decimal-input" @if(value != null){value="@MoedaUtil.formatarBigDecimal(value, precision)"} placeholder="@placeholder"/>
+    </div>
+</div>

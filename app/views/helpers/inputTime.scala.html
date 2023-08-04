@@ -1,0 +1,18 @@
+@(id: String, name: String,  label: String, value: java.util.Date, placeholder: String, spanSize: Integer, withSeconds: java.lang.Boolean)
+
+@import utils.StringUtils
+@import utils.DateUtil
+
+<div class="col-md-@spanSize">
+    <div class="form-group mb-3">
+        @if(StringUtils.isNotEmpthOrNull(label)) {
+            <label for="@id">@label</label>
+        }
+
+        @if(java.lang.Boolean.TRUE.equals(withSeconds)) {
+            <input id="@id" name="@name" type="text" class="form-control timepicker timepicker-24" value="@DateUtil.formataHora(value, withSeconds)" placeholder="@placeholder" data-inputmask="'mask': '99:99:99'"/>
+        } else {
+            <input id="@id" name="@name" type="text" class="form-control timepicker timepicker-24" value="@DateUtil.formataHora(value, withSeconds)" placeholder="@placeholder" data-inputmask="'mask': '99:99'"/>
+        }
+    </div>
+</div>
