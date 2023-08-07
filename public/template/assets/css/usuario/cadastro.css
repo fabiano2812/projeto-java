@@ -1,0 +1,283 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+html, body {height:100%;}
+label.form-label {
+    margin-left: 275px;
+}
+body{
+    background: url('https://images.unsplash.com/photo-1627539615229-2e5a2779c287?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1932&q=80');
+    background-size: cover;
+    background-position:center;
+    background-attachment: fixed;
+
+    align-items: flex-start;
+    display: flex;
+}
+
+/* Titulo e descrição */
+.descricao{
+    margin-top: 10px;
+    margin-bottom: 40px;
+    width: 100%;
+
+    font-family: Poppins;
+    color: #ffffff;
+}
+
+.titulo{
+    margin-top: 15%;
+    font-size: 40px;
+    font-family: 'Poppins-regular',Arial, sans-serif;
+    color: rgb(255, 255, 255);
+}
+label#nome-error {
+    text-align: center;
+}
+label#email-error {
+    text-align: center;
+}
+label#senha-error {
+    text-align: center;
+}
+.container{
+    margin-top: 90px;
+    margin-left: 25px;
+    /* margin: 0 auto; */
+}
+
+/* formulario Lateral  */
+.campo{
+    background-color: #fafafa;
+    max-width: 25rem;
+    right: 0;
+    position: fixed;
+}
+
+.login-img{
+    border-radius: 100%;
+    width: 125px;
+    height: 125px;
+
+    margin: 0 auto;
+    margin-top: 4rem;
+    display: block;
+}
+
+.title{
+    margin-top: 10px;
+    font-family: Poppins;
+    font-size: 20px;
+    color: #FF6E6E;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+
+    width: 100%;
+    display: block;
+}
+
+.form{
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.inputs{
+    width: 18rem;
+    margin: 0 auto;
+    padding: 10px;
+
+    border: none;
+    margin-bottom: 10px;
+
+    font-family: Poppins;
+    font-size: 18px;
+    border: 1px solid #d3d3d3;
+    color: #555555;
+    background-color: transparent;
+}
+
+/* botão */
+.entrar{
+    padding: 10px;
+    width: 18rem;
+    height: 50px;
+    margin: 0 auto;
+    border-radius: 3px;
+    border: none;
+    font-weight: 700;
+
+    background-color: #FF6E6E;
+    cursor: pointer;
+    font-family: Montserrat;
+    font-size: 12px;
+    color: #fff;
+}
+
+.entrar:hover {
+    background: #333333;
+}
+
+/* Cad */
+.cad{
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.form a{
+    text-decoration: none;
+    font-family: Poppins ;
+    font-weight: 500;
+    color: #555555;
+}
+
+.form a:hover{
+    color: blue;
+}
+
+
+/* Responsive */
+@media screen and (max-width: 800px) {
+    .campo{
+        width: 100%;
+        height: 100%;
+    }
+}
+@media screen and (max-width: 2000px) {
+    .campo{
+        top: 0;
+        bottom:0;
+        position:fixed;
+        overflow-x:hidden;
+    }
+
+}
+
+
+/* Tela Cadastro */
+
+.cad-img{
+    width: 125px;
+    height: 125px;
+
+    margin: 0 auto;
+    margin-top: 2rem;
+    display: block;
+
+
+}
+
+/* Formulario */
+.campo-cad{
+
+    background-color: #fafafa;
+    width: 50%;
+    height: 100%;
+    right: 0;
+    position: fixed;
+
+}
+
+/* Formulario */
+
+.form-cad{
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* Estilo estradas de texto */
+.inputs-cad{
+    width: 20rem;
+    margin: 0 auto;
+    padding: 5px;
+
+    border: none;
+    margin-bottom: 10px;
+
+    font-family: Poppins;
+    font-size: 15px;
+    border: 1px solid #cccaca;
+    color: #555555;
+    background-color: transparent;
+}
+
+
+.item-cad{
+    display: flex;
+    flex-direction: column;
+}
+label{
+    text-align: left;
+    font-family: Poppins;
+}
+
+/* botão */
+.entrar-cad{
+    padding: 10px;
+    width: 20rem;
+    height: 50px;
+    margin: 0 auto;
+    border-radius: 3px;
+    border: none;
+    font-weight: 700;
+
+    background-color: #FF6E6E;
+    cursor: pointer;
+    font-family: Montserrat;
+    font-size: 12px;
+    color: #fff;
+
+
+}
+
+.entrar-cad:hover {
+    background: #333333;
+}
+
+/* checkbox */
+#check{
+    margin: 3px;
+}
+
+
+
+/* Responsive */
+@media screen and (max-width: 800px) {
+    .campo-cad{
+        width: 100%;
+        height: 100%;
+
+        top: 0;
+        bottom:0;
+        position:fixed;
+        overflow-y:scroll;
+        overflow-x:hidden;
+    }
+    .cad-img{
+        margin-top: 1px;
+    }
+    .entrar-cad{
+        margin-bottom: 2rem;
+    }
+}
+
+@media screen and (max-width: 2000px) {
+    .campo-cad{
+        top: 0;
+        bottom:0;
+        position:fixed;
+        overflow-x:hidden;
+    }
+    .entrar-cad{
+        margin-bottom: 2rem;
+    }
+}

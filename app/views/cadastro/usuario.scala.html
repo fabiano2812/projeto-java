@@ -1,0 +1,52 @@
+@()
+@css ={
+    <link href="@routes.Assets.versioned("template/assets/css/usuario/cadastro.css")" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@@100;200;300;400;700&display=swap"
+    rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@@100;200;300;700&display=swap" rel="stylesheet">
+}
+
+@scripts = {
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="@routes.Assets.versioned("js/cadastro/usuario.js")" type="text/javascript"></script>
+    <script>
+            $(document).ready(function () {
+                Usuario.init();
+            });
+    </script>
+}
+
+@views.html.template.mainLogin("Cadastro", scripts, css){
+
+    <div class="container">
+        <h3 class="titulo">Tela login</h3>
+        <p class="descricao">Formulário de cadastro</p>
+    </div>
+
+    <div class="campo-cad">
+
+        <img class="cad-img" src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" />
+
+        <span class="title">
+            Novo Usuário
+        </span>
+
+        <form id="formCadastroUsuario">
+            <div class="item-cad">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" name="email" class="inputs-cad" id="email">
+
+                    <label for="senha" class="form-label">Senha</label>
+                    <input type="password" name="senha" class="inputs-cad" id="senha">
+
+                    <label for="nome" class="form-label">Nome</label>
+                    <input type="text" name="nome" class="inputs-cad"  id="nome" >
+
+                <button type="submit" class="entrar-cad">CADASTRAR</button>
+                <button type="button" onclick="Usuario.menuLogin()" class="entrar-cad">VOLTAR MENU</button>
+            </div>
+        </form>
+    </div>
+}

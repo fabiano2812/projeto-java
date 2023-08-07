@@ -1,6 +1,6 @@
 package controllers;
 
-import models.Imobiliaria;
+import beans.UsuarioBean;
 import models.Usuario;
 import play.data.DynamicForm;
 import play.db.jpa.Transactional;
@@ -16,77 +16,49 @@ import utils.StringUtils;
 
 public class Perfil extends Controller {
 
-    public Result inicio() {
-        Usuario usuario = Application.obterUsuarioLogado();
-        return ok(views.html.perfil.perfil.render(usuario));
-    }
-
     @Transactional
-    public Result salvarSenha(){
+    public Result salvarAlteracaoSenha() {
         try {
             DynamicForm dynamicForm = DynamicForm.form().bindFromRequest();
             String strId = dynamicForm.get("id");
             String senha2 = dynamicForm.get("renewpassword");
 
-            Long id = null;
-
-            if (StringUtils.isNotEmpthOrNull(strId)){
-                id = Long.valueOf(strId);
-            }
-
+            Long id = Long.valueOf(strId);
             Usuario usuario = Usuario.buscarPorId(id);
-            usuario.senha = senha2;
+            usuario.setSenha(senha2);
 
             usuario = (Usuario) usuario.alterar();
+            UsuarioBean usuarioBean = new UsuarioBean();
+            usuarioBean.setEmail(usuario.getEmail());
+            usuarioBean.setNome(usuario.getNome());
 
-            return ok(Json.toJson(usuario));
-        } catch (Exception e){
+            return ok(Json.toJson(usuarioBean));
+        } catch (Exception e) {
             return badRequest();
         }
     }
 
     @Transactional
-    public Result salvar() {
+    public Result salvarAlteracaoEmail() {
         try {
             DynamicForm dynamicForm = DynamicForm.form().bindFromRequest();
 
             String strId = dynamicForm.get("id");
             String nome = dynamicForm.get("fullName");
             String email = dynamicForm.get("fullEmail");
-            String strSobre = dynamicForm.get("fullSobre");
-            String strImobiliaria = dynamicForm.get("fullimobiliaria");
-            String senha = dynamicForm.get("fullSenha");
-            String strTrabalho = dynamicForm.get("fullTrabalho");
-            String strEmpresa = dynamicForm.get("fullEmpresa");
-            String strPais = dynamicForm.get("fullPais");
-            String strEndereco = dynamicForm.get("fullEndereco");
 
-            Long id = null;
-            if (StringUtils.isNotEmpthOrNull(strId)) {
-                id = Long.valueOf(strId);
-            }
-
-            Usuario usuario = new Usuario();
-            usuario.nome = nome;
-            usuario.email = email;
-            usuario.id = id;
-            usuario.senha = senha;
-            usuario.sobre = strSobre;
-            usuario.trabalho = strTrabalho;
-            usuario.empresa = strEmpresa;
-            usuario.pais = strPais;
-            usuario.endereco = strEndereco;
-
-            if (StringUtils.isNotEmpthOrNull(strImobiliaria)){
-                Long imobiliariaId = Long.valueOf(strImobiliaria);
-                Imobiliaria imobiliaria = Imobiliaria.buscarPorId(imobiliariaId);
-                usuario.imobiliaria = imobiliaria;
-            }
-
-
+            Long id = Long.valueOf(strId);
+            Usuario usuario = Usuario.buscarPorId(id);
+            usuario.setNome(nome);
+            usuario.setEmail(email);
+            usuario.setId(id);
             usuario = (Usuario) usuario.alterar();
 
-            return ok(Json.toJson(usuario));
+            UsuarioBean usuarioBean = new UsuarioBean();
+            usuarioBean.setEmail(usuario.getEmail());
+            usuarioBean.setNome(usuario.getNome());
+
+            return ok(Json.toJson(usuarioBean));
         } catch (Exception e) {
             return badRequest();
         }

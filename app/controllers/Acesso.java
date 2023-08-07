@@ -1,5 +1,6 @@
 package controllers;
 
+import beans.UsuarioBean;
 import models.Usuario;
 import play.data.DynamicForm;
 import play.db.jpa.Transactional;
@@ -13,11 +14,10 @@ public class Acesso extends Controller {
 
     public Result login() {
         session().clear();
-        return ok(views.html.acesso.login.render());
+        return ok(views.html.login.login_Usuario.render());
     }
     @Transactional
     public Result acessoLoguin(){
-      try {
           DynamicForm dynamicForm = DynamicForm.form().bindFromRequest();
           String strEmail = dynamicForm.get("email");
           String strSenha = dynamicForm.get("senha");
@@ -25,15 +25,17 @@ public class Acesso extends Controller {
           Usuario usuario = Usuario.buscarUsuarioPorEmailSenha(strEmail, strSenha);
 
           if(usuario != null){
-              session().put(AppSecurity.USUARIO_LOGADO, usuario.getId().toString());
-              return ok(Json.toJson(usuario));
+              String id = usuario.getId().toString();
+              session().put(AppSecurity.USUARIO_LOGADO, id);
+              UsuarioBean usuarioBean = new UsuarioBean();
+
+              Long strID = Long.valueOf(id);
+              usuarioBean.setEmail(usuario.getEmail());
+              usuarioBean.setId(strID);
+              usuarioBean.setNome(usuario.getNome());
+              return ok(Json.toJson(usuarioBean));
           }else {
               return ok();
           }
-
-      } catch (Exception e){
-            return badRequest();
-        }
-
     }
 }

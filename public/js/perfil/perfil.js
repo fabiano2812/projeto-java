@@ -1,9 +1,11 @@
 var Perfil = function (){
 
-    const URL_SALVAR = '/perfil/salvar';
+    const URL_SALVAR = '/perfil/salvar/alteracaoEmail';
     const URL_SALVAR_SENHA = '/perfil/salvar/senha';
 
     var init = function (){
+        validarDadosPerfilEmail()
+        salvarNovaSenha();
     }
 
     var salvarNovaSenha = function (){
@@ -38,13 +40,8 @@ var Perfil = function (){
                     method: 'POST',
                     url: URL_SALVAR_SENHA,
                     data: formData,
-                    success: function (formData) {
-                        console.log(formData)
-
-                        Dialog.openSuccessDialog({
-                            title:'Tudo certo!',
-                            text: "Senha alterado com sucesso!"
-                        })
+                    success: function () {
+                        SnackBar.show("Senha Alterada com sucesso!", 8000);
                     },
                     error: function (jqXHR, exception) {
                         console.log("Ocorreu um erro no servidor");
@@ -54,7 +51,7 @@ var Perfil = function (){
         })
     }
 
-    var iniciarValidacao = function (){
+    var validarDadosPerfilEmail = function (){
         $('#formUsuariovalidacao').validate({
             rules: {
                 id: {
@@ -66,27 +63,6 @@ var Perfil = function (){
                 fullEmail: {
                     required: true
                 },
-                fullimobiliaria: {
-                    required: true
-                },
-                fullSenha: {
-                    required: true
-                },
-                fullSobre: {
-                    required: true
-                },
-                fullTrabalho: {
-                    required: true
-                },
-                fullEmpresa: {
-                    required: true
-                },
-                fullPais: {
-                    required: true
-                },
-                fullEndereco: {
-                    required: true
-                },
             },
             messages: {
                 fullName: {
@@ -95,41 +71,16 @@ var Perfil = function (){
                 fullEmail: {
                     required: 'Informe seu Email'
                 },
-                fullimobiliaria: {
-                    required: 'Informe sua Imobiliaria'
-                },
-                fullSenha: {
-                    required: 'Informe sua Senha'
-                },
-                fullSobre: {
-                    required: 'Informe sobre'
-                },
-                fullTrabalho: {
-                    required: 'Informe seu trabalho'
-                },
-                fullEmpresa: {
-                    required: 'Informe sua empresa'
-                },
-                fullPais: {
-                    required: 'Informe seu pais'
-                },
-                fullEndereco: {
-                    required: 'Informe seu pais'
-                },
             },
             errorClass: "text-danger",
             submitHandler: function (form) {
                 var formData = $(form).serializeArray();
-
                 $.ajax({
                     method: 'POST',
                     url: URL_SALVAR,
                     data: formData,
-                    success: function (formData) {
-                       Dialog.openSuccessDialog({
-                           title:'Tudo certo!',
-                           text: "Perfil alterado com sucesso!"
-                       })
+                    success: function () {
+                        SnackBar.show("Perfil Alterado com sucesso!", 8000);
                     },
                     error: function (jqXHR, exception) {
                         console.log("Ocorreu um erro no servidor");
@@ -138,15 +89,10 @@ var Perfil = function (){
             }
         });
     }
-
     return{
         init: function (){
             init();
-            iniciarValidacao();
-            salvarNovaSenha();
         },
-        voltar: function (){
-        }
     }
 
 }()

@@ -137,7 +137,8 @@ var Pessoa = function () {
                     url: URL_SALVAR_PESSOA,
                     data: formData,
                     contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                    success: function () {
+                    success: function (nome) {
+                        console.log(nome)
                         Swal.fire({
                             title: "Tudo certo :)",
                             text: "Pessoa salva com sucesso!",

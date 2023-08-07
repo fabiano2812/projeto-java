@@ -25,6 +25,8 @@ public class Usuario extends BaseImobiliaria {
     @NotEmpty
     private String nome;
 
+    private String senha;
+
     @NotEmpty
     private String email;
 
@@ -32,6 +34,26 @@ public class Usuario extends BaseImobiliaria {
         Query query = JPA.em().createQuery("SELECT u FROM Usuario u WHERE u.id = :id ");
         query.setParameter("id", id);
         return (Usuario) query.getSingleResult();
+    }
+
+    public static Usuario buscarUsuarioPorEmailSenha(String email, String senha) {
+        try {
+            Query query = JPA.em().createQuery("SELECT u FROM Usuario u WHERE u.email = :email AND u.senha = :senha ");
+            query.setParameter("email", email);
+            query.setParameter("senha", senha);
+            query.setMaxResults(1);
+            return (Usuario) query.getSingleResult();
+        } catch (NoResultException n) {
+            return null;
+        }
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public String getEmail() {

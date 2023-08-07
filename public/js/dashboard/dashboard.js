@@ -1,5 +1,5 @@
 var dashboard = function () {
-    const URL_BUSCAR_COMPRAS = '/dashboard/buscarCompras';
+  /*  const URL_BUSCAR_COMPRAS = '/dashboard/buscarCompras';
     const URL_BUSCAR_VENDAS = '/dashboard/buscaVenda';
     const URL_BUSCAR_ANUNCIO = '/dashboard/buscarAnuncio';
     const URL_BUSCAR_DESPESAS = '/dashboard/despesas';
@@ -8,11 +8,11 @@ var dashboard = function () {
     const URL_BUSCAR_ATENDIMENTO = '/dashboard/atendimento';
     const URL_BUSCAR_EVENTOS = '/dashboard/eventos';
     const URL_BUSCAR_EVENTOS_POR_DATA = '/dashboard/eventos/paraHoje';
-    const URL_BUSCAR_PESSOAS = '/dashboard/evento/pessoa';
+    const URL_BUSCAR_PESSOAS = '/dashboard/evento/pessoa';*/
 
 
     var init = function () {
-        buscarQuantidadeCompras();
+      /*  buscarQuantidadeCompras();
         buscarTotalVendas();
         buscarQuantidadeAnuncios();
         buscarDespesas();
@@ -20,7 +20,7 @@ var dashboard = function () {
         buscarQuantidadeCompromissos();
         buscarQuantidaDeAtendimento();
         buscarQuantidaDeEventos();
-        pessoasEventohoje();
+        pessoasEventohoje();*/
     }
     var buscarQuantidadeCompras = function () {
         $.ajax({

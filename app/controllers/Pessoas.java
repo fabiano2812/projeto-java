@@ -1,7 +1,6 @@
 package controllers;
 
 import beans.FiltroPessoaBean;
-import beans.PessoaBean;
 import beans.search.SearchResult;
 import models.Pessoa;
 import play.data.Form;
@@ -9,9 +8,8 @@ import play.db.jpa.Transactional;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
-
-import java.util.ArrayList;
-import java.util.List;
+import play.mvc.Security;
+import security.AppSecurity;
 
 public class Pessoas extends Controller {
 
@@ -27,7 +25,6 @@ public class Pessoas extends Controller {
             return badRequest();
         }
     }
-
     @Transactional
     public Result filtrar(){
         try {
@@ -47,7 +44,7 @@ public class Pessoas extends Controller {
             Form<Pessoa> form = formCadastro.bindFromRequest();
             Pessoa pessoa = form.get();
             pessoa = (Pessoa) pessoa.alterar();
-            return ok();
+            return ok(Json.toJson(pessoa.getNome()));
         } catch (Exception e) {
             e.printStackTrace();
             return badRequest();
