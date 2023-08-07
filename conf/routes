@@ -25,10 +25,12 @@ GET   /dashboard                          controllers.Application.dashboard
 #POST  /dashboard/evento/pessoa            controllers.Dashboard.eventoPessoas
 
 
+
 #USUARIO
 GET /cadastra/novo/usuario         controllers.Usuarios.novo()
 POST  /usuarios/salvar             controllers.Usuarios.salvar
 GET   /perfil/usuarioLogado        controllers.Usuarios.perfilUsuario()
+
 
 #PERFIL
 POST /perfil/salvar/alteracaoEmail                          controllers.Perfil.salvarAlteracaoEmail()
@@ -36,7 +38,7 @@ POST /perfil/salvar/senha                                   controllers.Perfil.s
 
 
 #PESSOAS
-POST    /pessoa/salvar              controllers.Pessoas.salvar()
+POST    /pessoa/salvar                controllers.Pessoas.salvar()
 POST    /pessoas/filtrar              controllers.Pessoas.filtrar()
 
 # Map static resources from the /public folder to the /assets URL path

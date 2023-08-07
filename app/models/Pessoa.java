@@ -55,8 +55,7 @@ public class Pessoa extends BaseImobiliaria {
     @Column(name = "data_nascimento")
     private Date dataNascimento;
 
-    @Embedded
-    private Endereco endereco = new Endereco();
+
 
     private String senha;
     private Boolean ativo = true;
@@ -293,13 +292,6 @@ public class Pessoa extends BaseImobiliaria {
         this.dataNascimento = dataNascimento;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
 
     public String getSenha() {
         return senha;

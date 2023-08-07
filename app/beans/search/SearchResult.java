@@ -14,6 +14,8 @@ public class SearchResult<BaseResultBean> {
 		super();
 	}
 
+
+
 	public SearchResult(Long draw, List<BaseResultBean> data, Long recordsTotal, FiltroBaseBean filtro) {
 		this.draw = draw;
 		this.data = data;
@@ -27,5 +29,4 @@ public class SearchResult<BaseResultBean> {
             this.meta = new SearchMeta(pagina, paginas, filtro.length, recordsTotal);
         }
 	}
-
 }

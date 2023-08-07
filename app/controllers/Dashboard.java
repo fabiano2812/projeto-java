@@ -1,15 +1,9 @@
 package controllers;
 
-import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
 import security.AppSecurity;
-import utils.MoedaUtil;
-
-import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
 
 @Security.Authenticated(AppSecurity.class)
 public class Dashboard extends Controller {
