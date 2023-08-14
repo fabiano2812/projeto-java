@@ -1,0 +1,23 @@
+@import models.Estado
+@(estado: Estado)
+
+<div class="d-flex justify-content-start my-3">
+    <button type="button" class="btn font-weight-bolder btn-dark" onclick="Estado.voltarTelaPrincipal()">Voltar</button>
+</div>
+<div class="card">
+    <div class="card-body">
+        <form method="post" id="formEstado">
+            <input type="hidden" name="id" value="@estado.getId">
+
+            <div class="row">
+                @views.html.helpers.inputText("nome", "nome", "Nome", estado.getNome, "Insira o nome",  12, 50)
+                @views.html.helpers.inputText("sigla", "sigla", "Sigla", estado.getSigla, "Insira a sigla",  12,  2)
+            </div>
+            <div class="d-flex justify-content-end my-3">
+                <button type="submit" class="btn btn-block btn-success">Salvar</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+

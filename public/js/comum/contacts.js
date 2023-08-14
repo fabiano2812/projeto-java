@@ -14,8 +14,10 @@ var Contact = function () {
 
         $fields.each(function (j) {
             initSelect2(id + "_tipo" + j, "Selecione");
+            initSelect2(id + "_finalidade" + j, "Selecione");
 
             var $tipo = $("#" + id + "_tipo" + j);
+            var $finalidade = $("#" + id + "_finalidade" + j);
             var $valor = $("#" + id + "_valor" + j);
 
             $tipo.on('change', function () {
@@ -26,6 +28,16 @@ var Contact = function () {
             if ($tipo.val() != null) {
                 setMask($valor, $tipo);
                 setPlaceHolderDescricao($valor, $tipo);
+            }
+
+            $finalidade.on('change', function () {
+                setMask($valor, this);
+                setPlaceHolderDescricao($valor, this);
+            });
+
+            if ($finalidade.val() != null) {
+                setMask($valor, $finalidade);
+                setPlaceHolderDescricao($valor, $finalidade);
             }
         });
 
@@ -42,15 +54,20 @@ var Contact = function () {
             var idTipo = id + '_tipo' + count;
             var idValor = id + '_valor' + count;
             var idObservacao = id + '_observacao' + count;
+            var idFinalidade = id + '_finalidade' + count;
 
             var $select2model = $('#' + id + '_tipo0');
             var selectData = $select2model.select2('data')[0];
 
             $select2model.select2('destroy');
 
+            var $select2modelFinalidade = $('#' + id + '_finalidade0');
+            $select2modelFinalidade.select2('destroy');
+
             var $clone = $('#' + id + ' .select-multi-field:first').clone(false);
             $clone.find('input[name$=id]').attr("id", idItem);
             $clone.find('select[name$=tipoContato]').attr("id", idTipo).removeAttr('data-select2-id');
+            $clone.find('select[name$=finalidade]').attr("id", idFinalidade).removeAttr('data-select2-id');
             $clone.find('select>option').removeAttr('data-select2-id');
             $clone.find('input[name$=valor]').attr("id", idValor);
             $clone.find('input[name$=observacao]').attr("id", idObservacao);
@@ -59,13 +76,18 @@ var Contact = function () {
             initSelect2(id + '_tipo0', "Selecione");
             initSelect2(idTipo, "Selecione");
 
+            initSelect2(id + '_finalidade0', "Selecione");
+            initSelect2(idFinalidade, "Selecione");
+
             $("#" + idItem).val("");
             $('#' + idTipo).val(null).trigger('change');
+            $('#' + idFinalidade).val(null).trigger('change');
             $("#" + idValor).val("");
             $("#" + idObservacao).val("");
 
             var $tipo = $("#" + idTipo);
             var $valor = $("#" + idValor);
+            var $finalidade = $("#" + idFinalidade);
 
             $tipo.on('change', function () {
                 setMask($valor, this);
@@ -75,6 +97,16 @@ var Contact = function () {
             if ($tipo.val() != null) {
                 setMask($valor, $tipo);
                 setPlaceHolderDescricao($valor, $tipo);
+            }
+
+            $finalidade.on('change', function () {
+                setMask($valor, this);
+                setPlaceHolderDescricao($valor, this);
+            });
+
+            if ($finalidade.val() != null) {
+                setMask($valor, $finalidade);
+                setPlaceHolderDescricao($valor, $finalidade);
             }
 
             toggleRemoveButton();
@@ -117,6 +149,9 @@ var Contact = function () {
             var $inputTipo = $(this).find('select[name$=tipoContato]');
             $inputTipo.attr('name', ("" + $inputTipo.attr('name')).replace(regExp, name + '[' + j + ']'));
 
+            var $inputFinalidade = $(this).find('select[name$=finalidade]');
+            $inputFinalidade.attr('name', ("" + $inputFinalidade.attr('name')).replace(regExp, name + '[' + j + ']'));
+
             var $inputValor = $(this).find('input[name$=valor]');
             $inputValor.attr('name', ("" + $inputValor.attr('name')).replace(regExp, name + '[' + j + ']'));
 
@@ -149,7 +184,6 @@ var Contact = function () {
 
     return {
         init: function (options) {
-            Contact();
             init(options);
             initAddButton();
             initRemoveButton();

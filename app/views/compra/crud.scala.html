@@ -1,0 +1,36 @@
+@()
+@estilos = {
+}
+@scripts = {
+    <script src="@routes.Assets.versioned("js/compra/compra.js")" type="text/javascript"></script>
+    <script>
+            jQuery(document).ready(function() {
+                Compra.init();
+            });
+    </script>
+}
+
+    @searchFilter = {
+        <div class="row">
+        @views.html.helpers.inputText("id", "id", "Id","", "", 12, 100)
+        </div>
+        <div class="row">
+        @views.html.helpers.inputDate("dataInicioFiltro", "dataInicioFiltro", "Data Inicio", null,  "", 12)
+        </div>
+        <div class="row">
+        @views.html.helpers.inputDate("dataFimFiltro", "dataFimFiltro", "Data fim", null,  "", 12)
+        </div>
+    }
+    @tableHeader = {
+        <th>Id</th>
+        <th>Imobiliaria</th>
+        <th>Data Inicio</th>
+        <th>Data Fim</th>
+        <th class="d-flex">Ações</th>
+    }
+    @buttonBar = {
+        <button type="button" class="btn font-weight-bolder btn-success"onclick="Compra.abrirEdicao()">
+            + Nova Compra
+        </button>
+    }
+@views.html.templateCRUD("Compra", buttonBar, tableHeader, searchFilter, estilos, scripts)

@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import play.db.jpa.JPA;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Audited
 @Entity
@@ -30,6 +31,8 @@ public class Usuario extends BaseImobiliaria {
     @NotEmpty
     private String email;
 
+    public byte[] salt;
+
     public static Usuario buscarPorId(Long id) {
         Query query = JPA.em().createQuery("SELECT u FROM Usuario u WHERE u.id = :id ");
         query.setParameter("id", id);
@@ -44,6 +47,16 @@ public class Usuario extends BaseImobiliaria {
             query.setMaxResults(1);
             return (Usuario) query.getSingleResult();
         } catch (NoResultException n) {
+            return null;
+        }
+    }
+
+    public static List buscarUsuariosPorEmail(String email){
+        try {
+            Query query = JPA.em().createQuery("SELECT u FROM Usuario u WHERE u.email = :email");
+            query.setParameter("email", email);
+            return query.getResultList();
+        }catch (Exception e){
             return null;
         }
     }
@@ -78,5 +91,13 @@ public class Usuario extends BaseImobiliaria {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public byte[] getSalt() {
+        return salt;
+    }
+
+    public void setSalt(byte[] salt) {
+        this.salt = salt;
     }
 }

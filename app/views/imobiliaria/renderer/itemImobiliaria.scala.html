@@ -1,0 +1,10 @@
+@(imobiliaria: models.Imobiliaria)
+<div class="col-md-3">
+    <div class="info-box card">
+        <i class="bi bi-file-earmark-person"></i>
+        <h3>@imobiliaria.getNome</h3>
+        <p>Endereço: @imobiliaria.getEndereco</p>
+        <button type="submit" class="btn btn-block btn-success" onclick="Listagem.abrirPopup(@imobiliaria.getId)">
+         Abrir Popup</button>
+    </div>
+</div>

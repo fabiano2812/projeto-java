@@ -1,26 +1,26 @@
 var dashboard = function () {
-  /*  const URL_BUSCAR_COMPRAS = '/dashboard/buscarCompras';
-    const URL_BUSCAR_VENDAS = '/dashboard/buscaVenda';
-    const URL_BUSCAR_ANUNCIO = '/dashboard/buscarAnuncio';
-    const URL_BUSCAR_DESPESAS = '/dashboard/despesas';
-    const URL_BUSCAR_RECEITAS = '/dashboard/receitas';
-    const URL_BUSCAR_COMPROMISSOS = '/dashboard/compromissos';
-    const URL_BUSCAR_ATENDIMENTO = '/dashboard/atendimento';
-    const URL_BUSCAR_EVENTOS = '/dashboard/eventos';
-    const URL_BUSCAR_EVENTOS_POR_DATA = '/dashboard/eventos/paraHoje';
-    const URL_BUSCAR_PESSOAS = '/dashboard/evento/pessoa';*/
+    const URL_BUSCAR_COMPRAS = '/dashboard/buscarCompras';
+  //  const URL_BUSCAR_VENDAS = '/dashboard/buscaVenda';
+  //  const URL_BUSCAR_ANUNCIO = '/dashboard/buscarAnuncio';
+   // const URL_BUSCAR_DESPESAS = '/dashboard/despesas';
+   // const URL_BUSCAR_RECEITAS = '/dashboard/receitas';
+  //  const URL_BUSCAR_COMPROMISSOS = '/dashboard/compromissos';
+  //  const URL_BUSCAR_ATENDIMENTO = '/dashboard/atendimento';
+   // const URL_BUSCAR_EVENTOS = '/dashboard/eventos';
+  //  const URL_BUSCAR_EVENTOS_POR_DATA = '/dashboard/eventos/paraHoje';
+   // const URL_BUSCAR_PESSOAS = '/dashboard/evento/pessoa';
 
 
     var init = function () {
-      /*  buscarQuantidadeCompras();
-        buscarTotalVendas();
-        buscarQuantidadeAnuncios();
-        buscarDespesas();
-        buscarReceitas();
-        buscarQuantidadeCompromissos();
-        buscarQuantidaDeAtendimento();
-        buscarQuantidaDeEventos();
-        pessoasEventohoje();*/
+        buscarQuantidadeCompras();
+        /*   buscarTotalVendas();
+           buscarQuantidadeAnuncios();
+           buscarDespesas();
+           buscarReceitas();
+           buscarQuantidadeCompromissos();
+           buscarQuantidaDeAtendimento();
+           buscarQuantidaDeEventos();
+           pessoasEventohoje();*/
     }
     var buscarQuantidadeCompras = function () {
         $.ajax({
@@ -28,13 +28,12 @@ var dashboard = function () {
             url: URL_BUSCAR_COMPRAS,
             success: function (quantidade) {
                 $('#quantidadeCompras').html(quantidade);
-                quantidadePessoas();
             },
             error: function (jqXHR, exception) {
             }
         });
     }
-    var quantidadePessoas = function (){
+  /*  var quantidadePessoas = function (){
         $.ajax({
             method: 'POST',
             url: URL_BUSCAR_PESSOAS,
@@ -44,10 +43,10 @@ var dashboard = function () {
             error: function (jqXHR, exception) {
             }
         });
-    }
+    }*/
 
 
-    var buscarTotalVendas = function () {
+   /** var buscarTotalVendas = function () {
         $.ajax({
             method: 'POST',
             url: URL_BUSCAR_VENDAS,
@@ -59,8 +58,8 @@ var dashboard = function () {
                 console.log("Ocorreu um erro no servidor");
             }
         });
-    };
-    var buscarDespesas = function () {
+    };*/
+   /** var buscarDespesas = function () {
         $.ajax({
             method: 'POST',
             url: URL_BUSCAR_DESPESAS,
@@ -72,8 +71,8 @@ var dashboard = function () {
                 console.log("Ocorreu um erro no servidor");
             }
         });
-    }
-    var buscarReceitas = function () {
+    }*/
+   /* var buscarReceitas = function () {
         $.ajax({
             method: 'POST',
             url: URL_BUSCAR_RECEITAS,
@@ -150,7 +149,7 @@ var dashboard = function () {
                 console.log("Ocorreu um erro no servidor");
             }
         })
-    }
+    }*/
     return {
         init: function () {
             init();

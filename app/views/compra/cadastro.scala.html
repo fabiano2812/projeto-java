@@ -1,0 +1,35 @@
+@import models.Compra
+@(compra: Compra)
+
+<div class="d-flex justify-content-start my-3">
+    <button type="button" class="btn font-weight-bolder btn-dark" onclick="Compra.voltarTelaPrincipal()">Voltar</button>
+</div>
+<div class="card">
+    <div class="card-body">
+        <form method="post" id="formCompra">
+            <input type="hidden" name="id" value="@compra.getId">
+
+            <div class="row">
+                @views.html.helpers.inputDate("dataInicio", "dataInicio", "Data Inicio", compra.getDataInicio, "Insira a data de inicio",  6)
+                @views.html.helpers.inputDate("dataFim", "dataFim", "Data fim", compra.getDataFim, "Insira a data fim",  6)
+            </div>
+            <div class="row">
+            @views.html.helpers.select2("imobiliaria", "imobiliaria", "Imobiliaria", 12) {
+                <option></option>
+                @for((imobiliaria, index) <- Imobiliaria.buscarTodosAtivos().zipWithIndex) {
+                    @if(compra.getImobiliaria != null && compra.getImobiliaria.getId.equals(imobiliaria.getId)){
+                        <option value="@imobiliaria.getId" selected="selected">@imobiliaria.getId - @imobiliaria.getNome</option>
+                    }else{
+                        <option value="@imobiliaria.getId">@imobiliaria.getId - @imobiliaria.getNome</option>
+                    }
+                }
+            }
+            </div>
+            <div class="d-flex justify-content-end my-3">
+                <button type="submit" class="btn btn-block btn-success">Salvar</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+

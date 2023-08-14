@@ -169,6 +169,48 @@ var Tooltip = function () {
 }();
 
 
+var BlockUI = function () {
+
+    var block = function (selector) {
+        if (!selector) {
+            KTApp.blockPage({
+                overlayColor: '#000000',
+                type: 'track',
+                state: 'primary',
+                size: 'lg',
+                opacity: 0.15
+            });
+        } else {
+            KTApp.block(selector, {
+                overlayColor: '#000000',
+                type: 'track',
+                state: 'primary',
+                size: 'lg',
+                opacity: 0.15
+            });
+        }
+    };
+
+    var unblock = function (selector) {
+        if (!selector) {
+            KTApp.unblockPage();
+        } else {
+            KTApp.unblock(selector);
+        }
+    };
+
+    return {
+        block: function (selector) {
+            block(selector);
+        },
+        unblock: function (selector) {
+            unblock(selector);
+        }
+    };
+
+}();
+
+
 var ValidationUI = function () {
 
     var highlight = function(element, errorClass, validClass) {
@@ -979,9 +1021,6 @@ var GenericComponents = function () {
         }
 
         // CLIPBOARD
-
-
-
         var clipboard = new ClipboardJS('[data-clipboard=true]');
 
         clipboard.on('success', function(e) {

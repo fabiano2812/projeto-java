@@ -54,7 +54,6 @@ var Crud = function () {
     var isMultipartFormData = false;
     var pendingUpdatedRecordId = -1;
 
-
     var $dataTable;
     var $searchForm;
     var $editForm;
@@ -62,7 +61,6 @@ var Crud = function () {
     var setOptions = function (options) {
         $searchForm = $('#formPesquisa');
         $editForm = $('#formEdicao');
-        clipboard = new ClipboardJS('.clipboard-copy');
 
         searchTitle = options.searchTitle;
         editTitle = options.editTitle;
@@ -184,6 +182,18 @@ var Crud = function () {
                 "url": "/commons/custom/i18n/dataTables.pt-BR.js"
             },
             "createdRow": rowCreatedCallback
+        });
+
+        $dataTable.on('draw', function () {
+            KTApp.initTooltips();
+        });
+
+        $dataTable.on('processing.dt', function (e, settings, processing) {
+            if (processing) {
+                BlockUI.block('#dataTable');
+            } else {
+                BlockUI.unblock('#dataTable');
+            }
         });
 
         $dataTable.on('dblclick', 'tr[id]', function () {

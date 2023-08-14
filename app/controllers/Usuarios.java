@@ -8,6 +8,11 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import security.AppSecurity;
 import play.mvc.Security;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+
 public class Usuarios extends Controller {
 
     public Result novo() {
@@ -51,7 +56,6 @@ public class Usuarios extends Controller {
     }
 
 
-    @Security.Authenticated(AppSecurity.class)
     @Transactional
     public Result salvar() {
         try {
@@ -60,11 +64,18 @@ public class Usuarios extends Controller {
             String senha = dynamicForm.get("senha");
             String email = dynamicForm.get("email");
 
+            SecureRandom random = new SecureRandom();
+            byte[] salt = new byte[16];
+            random.nextBytes(salt);
+
+            String hashedSenha = hashSenha(senha, salt);
+
             Usuario usuario = new Usuario();
             usuario.setNome(nome);
             usuario.setEmail(email);
-            usuario.setSenha(senha);
-            usuario = (Usuario) usuario.salvar();
+            usuario.setSenha(hashedSenha);
+            usuario.salt = salt;
+            usuario.salvar();
 
             return ok(Json.toJson(usuario));
         } catch (Exception e) {
@@ -72,6 +83,25 @@ public class Usuarios extends Controller {
         }
     }
 
+
+    public static String hashSenha(String senha, byte[] salt) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(salt);
+
+            byte[] hashedBytes = md.digest(senha.getBytes());
+
+            StringBuilder sb = new StringBuilder();
+            for (byte b : hashedBytes) {
+                sb.append(String.format("%02x", b));
+            }
+
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
    /* @Transactional
     public Result excluir(){

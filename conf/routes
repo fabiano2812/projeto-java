@@ -6,17 +6,17 @@
 
 GET   /                                   controllers.Acesso.login()
 GET  /acesso                              controllers.Acesso.login()
-POST /acesso/loguin                       controllers.Acesso.acessoLoguin()
+POST /acesso/loguin                       controllers.Acesso.acessoLogin()
 GET  /dashboard/page/inicial              controllers.Pessoas.abrirPaginaInicial()
 
 #GET   /pagina/inicial             controllers.Pessoas.abrirPaginaInicial()
 
 # DASHBOARD
 GET   /dashboard                          controllers.Application.dashboard
-#POST  /dashboard/buscarCompras            controllers.Dashboard.dashboardBuscarCompras
+POST  /dashboard/buscarCompras            controllers.Dashboard.dashboardBuscarCompras
 #POST  /dashboard/buscaVenda               controllers.Dashboard.dashboardBuscaVenda
 #POST  /dashboard/buscarAnuncio            controllers.Dashboard.dashboardBuscarAnuncio
-#POST  /dashboard/despesas                 controllers.Dashboard.despesas
+#POST  /dashboard/despesas                  controllers.Dashboard.despesas
 #POST  /dashboard/receitas                 controllers.Dashboard.receitas
 #POST  /dashboard/compromissos             controllers.Dashboard.compromissos
 #POST  /dashboard/atendimento              controllers.Dashboard.atendimento
@@ -25,9 +25,32 @@ GET   /dashboard                          controllers.Application.dashboard
 #POST  /dashboard/evento/pessoa            controllers.Dashboard.eventoPessoas
 
 
+# COMPRA
+GET   /compras                            controllers.Compras.inicio
+POST  /compras/filtrar                    controllers.Compras.filtrar
+POST  /compra/editar                      controllers.Compras.editar
+POST  /compra/salvar                      controllers.Compras.salvar
+POST  /compra/excluir                     controllers.Compras.excluir
+
+# IMOBILIARIAS
+GET   /imobiliarias                       controllers.Imobiliarias.inicio
+POST  /imobiliarias/filtrar               controllers.Imobiliarias.filtrar
+POST  /imobiliaria/editar                 controllers.Imobiliarias.editar
+POST  /imobiliaria/salvar                 controllers.Imobiliarias.salvar
+POST  /imobiliaria/excluir                controllers.Imobiliarias.excluir
+POST  /imobiliaria/visualizar/listagem    controllers.Imobiliarias.visulizarListagem
+GET   /imobiliaria/listagem               controllers.Imobiliarias.listagem
+
+# ESTADO
+GET   /estados                             controllers.Estados.inicio
+POST  /estado/editar                       controllers.Estados.editar
+POST  /estado/salvar                       controllers.Estados.salvar
+POST  /estado/filtrar                      controllers.Estados.filtrar
+POST  /estado/excluir                      controllers.Estados.excluir
+GET   /estados/buscarEstados               controllers.Estados.buscarEstados(query)
 
 #USUARIO
-GET /cadastra/novo/usuario         controllers.Usuarios.novo()
+GET   /cadastrar/novo/usuario         controllers.Usuarios.novo()
 POST  /usuarios/salvar             controllers.Usuarios.salvar
 GET   /perfil/usuarioLogado        controllers.Usuarios.perfilUsuario()
 

@@ -1,0 +1,35 @@
+@()
+@estilos = {
+}
+@scripts = {
+    <script src="@routes.Assets.versioned("js/imobiliaria/imobiliaria.js")" type="text/javascript"></script>
+    <script>
+            jQuery(document).ready(function() {
+                Imobiliaria.init();
+            });
+    </script>
+}
+
+    @searchFilter = {
+        <div class="row">
+        @views.html.helpers.inputText("id", "id", "Id","", "", 12, 100)
+        </div>
+        <div class="row">
+        @views.html.helpers.inputText("nome", "nome", "Nome","", "", 12, 100)
+        </div>
+        <div class="row">
+        @views.html.helpers.inputText("endereco", "endereco", "Endereco","", "", 12, 100)
+        </div>
+    }
+    @tableHeader = {
+        <th>Id</th>
+        <th>nome</th>
+        <th>Endereco</th>
+        <th>Ações</th>
+    }
+    @buttonBar = {
+        <button type="button" class="btn font-weight-bolder btn-success" onclick="Imobiliaria.abrirEdicao()">
+            + Novo Imobiliaria
+        </button>
+    }
+@views.html.templateCRUD("Imobiliaria", buttonBar, tableHeader, searchFilter, estilos, scripts)

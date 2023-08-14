@@ -1,0 +1,15 @@
+@import models.Imobiliaria
+@(imobiliaria: Imobiliaria)
+<form method="post" id="formImobiliaria">
+    <input type="hidden" name="id" value="@imobiliaria.getId">
+
+    <div class="row">
+        @views.html.helpers.inputText("nome", "nome", "Nome",imobiliaria.getNome, "Insira o nome da imobiliária", 12, 100)
+        @views.html.helpers.inputText("endereco", "endereco", "Endereco",imobiliaria.getEndereco, "Insira o Endereço", 12, 100)
+    </div>
+
+    <div class="d-flex justify-content-start my-3">
+        <button type="submit" class="btn btn-success">Salvar</button>
+        <button type="button" class="btn font-weight-bolder btn-dark" style="margin-left: 16px" onclick="Imobiliaria.voltarTelaPrincipal()">Voltar</button>
+    </div>
+</form>

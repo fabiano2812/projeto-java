@@ -1,0 +1,51 @@
+@import java.util
+@(imobiliarias: util.List[Imobiliaria])
+
+@estilos = {
+<style>
+        .contact .info-box {
+            padding: 28px 30px;
+        }
+
+        .contact .info-box i {
+            font-size: 38px;
+            line-height: 0;
+            color: #4154f1;
+        }
+
+        .contact .info-box h3 {
+            font-size: 20px;
+            color: #012970;
+            font-weight: 700;
+            margin: 20px 0 10px 0;
+        }
+
+        .contact .info-box p {
+            padding: 0;
+            line-height: 24px;
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+</style>
+
+}
+@scripts = {
+    <script src="@routes.Assets.versioned("js/imobiliaria/listagem.js")" type="text/javascript"></script>
+    <script>
+            $(document).ready(function() {});
+    </script>
+}
+
+@views.html.template.main("Deashboard", scripts, estilos,"") {
+<div class="pagetitle">
+    <h1>Listagem de Imobiliarias</h1>
+</div>
+
+<section class="section contact">
+    <div class="row">
+        @for((imobiliaria, index) <- imobiliarias.zipWithIndex) {
+            @views.html.imobiliaria.renderer.itemImobiliaria(imobiliaria)
+        }
+    </div>
+</section>
+}

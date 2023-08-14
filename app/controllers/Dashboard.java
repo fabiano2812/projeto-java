@@ -1,5 +1,7 @@
 package controllers;
 
+import models.Compra;
+import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
@@ -10,6 +12,18 @@ public class Dashboard extends Controller {
 
     public Result inicio() {
         return ok(views.html.dashboard.render());
+    }
+
+
+    @Transactional
+    public Result dashboardBuscarCompras() {
+        try {
+            Long quantidadeCompras = Compra.buscarQuantidadeCompras();
+            return ok(quantidadeCompras.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return badRequest();
+        }
     }
 
    /* @Transactional
