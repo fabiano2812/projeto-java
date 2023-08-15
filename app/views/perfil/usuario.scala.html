@@ -9,6 +9,7 @@
                 Perfil.init();
             });
     </script>
+
 }
 @views.html.template.main("Area de perfil", scripts, estilos, "") {
     <div class="pagetitle">
@@ -96,7 +97,8 @@
 
                                 <div class="tab-pane fade pt-3" id="profile-change-password" role="tabpanel">
                                     <form id="novaSenha">
-
+                                            <h5>Atenção por motivos de segurança a senha esta criptografada e nao poderar ter acesso...</h5>
+                                        <h6>Por motivos de segurança. Caso tenha alguma duvida entre em contato com nosso atendimento...</h6>
                                             <!--Dados da senha do ussuario para trocar a senha obtido pela id e senha do ussuario-->
 
                                         <input type="hidden" name="id" value="@usuario.getId">

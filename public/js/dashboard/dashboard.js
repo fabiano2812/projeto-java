@@ -1,6 +1,6 @@
 var dashboard = function () {
     const URL_BUSCAR_COMPRAS = '/dashboard/buscarCompras';
-  //  const URL_BUSCAR_VENDAS = '/dashboard/buscaVenda';
+    const URL_BUSCAR_VENDAS = '/dashboard/buscaVenda';
   //  const URL_BUSCAR_ANUNCIO = '/dashboard/buscarAnuncio';
    // const URL_BUSCAR_DESPESAS = '/dashboard/despesas';
    // const URL_BUSCAR_RECEITAS = '/dashboard/receitas';
@@ -13,8 +13,8 @@ var dashboard = function () {
 
     var init = function () {
         buscarQuantidadeCompras();
-        /*   buscarTotalVendas();
-           buscarQuantidadeAnuncios();
+          buscarTotalVendas();
+        /*   buscarQuantidadeAnuncios();
            buscarDespesas();
            buscarReceitas();
            buscarQuantidadeCompromissos();
@@ -46,7 +46,7 @@ var dashboard = function () {
     }*/
 
 
-   /** var buscarTotalVendas = function () {
+    var buscarTotalVendas = function () {
         $.ajax({
             method: 'POST',
             url: URL_BUSCAR_VENDAS,
@@ -58,7 +58,7 @@ var dashboard = function () {
                 console.log("Ocorreu um erro no servidor");
             }
         });
-    };*/
+    };
    /** var buscarDespesas = function () {
         $.ajax({
             method: 'POST',

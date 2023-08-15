@@ -1,0 +1,26 @@
+@import models.Plano
+@(plano: Plano)
+<div class="d-flex justify-content-start my-3">
+    <button type="button" class="btn font-weight-bolder btn-dark" onclick="Plano.voltarTelaPrincipal()">Voltar</button>
+</div>
+<div class="card">
+    <div class="card-body">
+        <form method="post" id="formProduto">
+            <input type="hidden" name="id" value="@plano.getId">
+
+            <div class="row">
+                @views.html.helpers.inputText("nome", "nome", "Nome",plano.getNome, "Insira o nome", 12, 100)
+                @views.html.helpers.inputText("descricao", "descricao", "Descrição",plano.getDescricao, "Insira a descrição", 12, 300)
+            </div>
+            <div class="row">
+                @views.html.helpers.inputDecimal("preco", "preco", "Preço", plano.getPreco, 2, "Insira o preço", 6)
+                @views.html.helpers.inputDate("dataCadastro", "dataCadastro", "Data de Cadastro", plano.getDataCadastro, "Insira a data de cadastro",  6)
+            </div>
+
+            <div class="d-flex justify-content-end my-3">
+                <button type="submit" class="btn btn-block btn-success">Salvar</button>
+            </div>
+        </form>
+
+    </div>
+</div>

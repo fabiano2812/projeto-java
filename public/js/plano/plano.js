@@ -1,13 +1,13 @@
-let Compra = function (){
+var Plano = function () {
 
-    const URL_FILTRAR = '/compras/filtrar';
-    const URL_EDITAR = '/compra/editar';
-    const URL_SALVAR = '/compra/salvar';
-    const URL_EXCLUIR = '/compra/excluir';
+    const URL_FILTRAR = '/planos/filtrar';
+    const URL_EDITAR = '/plano/editar';
+    const URL_SALVAR = '/plano/salvar';
+    const URL_EXCLUIR = '/plano/excluir';
 
     var $dataTable;
 
-    var init = function() {
+    var init = function (){
         $dataTable = $('#dataTable').DataTable({
             responsive: true,
             dom: 't<"dt-panelfooter clearfix"<"row m-0"<"col-md-6 p-0" i><"col-md-6 p-0 dataTables_pager" p>>>',
@@ -43,13 +43,10 @@ let Compra = function (){
                     data: 'id'
                 },
                 {
-                    data: 'nomeImobiliaria',
+                    data: 'nome',
                 },
                 {
-                    data:'dataInicioFmt'
-                },
-                {
-                    data: 'dataFimFmt'
+                    data:'descricao'
                 },
                 {
                     data: 'id',
@@ -61,10 +58,10 @@ let Compra = function (){
                     orderable: false,
                     render: function (data, type, full, meta) {
                         var acoesHtml = '';
-                        acoesHtml += '<button class="btn btn-sm btn-primary me-3" title="Editar"onclick="Compra.abrirEdicao(' + full.id + ')">';
+                        acoesHtml += '<button class="btn btn-sm btn-primary me-3" title="Editar"onclick="Plano.abrirEdicao(' + full.id + ')">';
                         acoesHtml += 'Editar';
                         acoesHtml += '</button>';
-                        acoesHtml += '<button class="btn btn-sm btn-danger me-3" title="Excluir"onclick="Compra.excluir(' + full.id + ')">';
+                        acoesHtml += '<button class="btn btn-sm btn-danger me-3" title="Excluir"onclick="Plano.excluir(' + full.id + ')">';
                         acoesHtml += 'Excluir';
                         acoesHtml += '</button>';
                         return acoesHtml;
@@ -77,29 +74,35 @@ let Compra = function (){
 
     }
 
-    var iniciarValidacaoCompra = function (){
-        $('#formCompra').validate({
+    var iniciarValidaocaoFormulario = function (){
+        $('#formProduto').validate({
             rules: {
-                dataInicio: {
+                nome: {
                     required: true
                 },
-                dataFim: {
+                descricao: {
                     required: true
                 },
-                plano: {
+                preco: {
                     required: true
                 },
+                dataCadastro: {
+                    required: true
+                }
             },
             messages: {
-                dataInicio: {
-                    required: 'Informe a data de inicio'
+                nome: {
+                    required: 'Informe o seu nome'
                 },
-                dataFim: {
-                    required: 'Informe a data fim'
+                descricao: {
+                    required: 'Informe a descrição'
                 },
-                plano: {
-                    required: 'Informe o plano'
+                preco: {
+                    required: 'Informe o preço'
                 },
+                dataCadastro:{
+                    required: 'Informe a data do cadastro'
+                }
             },
             errorClass: "text-danger",
             submitHandler: function (form) {
@@ -110,7 +113,7 @@ let Compra = function (){
                     url: URL_SALVAR,
                     data: formData,
                     success: function () {
-                        window.location.href = "http://localhost:9000/compras";
+                        swal("Muito bom!", "Plano salvo com!", "success");
                     },
                     error: function (jqXHR, exception) {
                         console.log("Ocorreu um erro no servidor");
@@ -128,26 +131,14 @@ let Compra = function (){
                 id: id
             },
             success: function (htmlCadastro){
-                Compra.esconderTelaPrincipal();
+                Plano.esconderTelaPrincipal();
                 $('#area-edicao').html(htmlCadastro)
                 iniciarComponentesEdicao();
             }
         });
     }
-
     var iniciarComponentesEdicao = function (){
-        new Select2Commons().init({
-            id: "plano",
-            placeholder: "Selecione",
-            allowClear: false
-        });
-        new Select2Commons().init({
-            id: "imobiliaria",
-            placeholder: "Selecione",
-            allowClear: false
-        });
-        iniciarValidacaoCompra()
-        GenericComponents.initDateInput();
+        iniciarValidaocaoFormulario();
     }
 
     var excluir = function (id){
@@ -163,6 +154,11 @@ let Compra = function (){
                     },
                     success: function () {
                         $('.linha-'+id).remove();
+                        Dialog.openSuccessDialog({
+                            title:'Excluído!',
+                            text:'Seu arquivo foi excluído.'
+                        })
+                        Crud.refreshDataTable();
                     },
                     error: function (jqXHR, exception) {
                         console.log("Erro no servidor ao excluir.");
@@ -176,10 +172,10 @@ let Compra = function (){
         init: function (){
             init();
         },
-        abrirEdicao: function (id){
+        abrirEdicao:function (id){
             abrirEdicao(id);
         },
-        excluir:function (id){
+        excluir: function (id){
             excluir(id);
         },
         esconderTelaPrincipal: function (){

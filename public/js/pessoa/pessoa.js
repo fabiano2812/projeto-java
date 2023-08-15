@@ -139,11 +139,7 @@ var Pessoa = function () {
                     contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
                     success: function (nome) {
                         console.log(nome)
-                        Swal.fire({
-                            title: "Tudo certo :)",
-                            text: "Pessoa salva com sucesso!",
-                            icon: "success"
-                        });
+                        swal("Muito bom!", "Pessoa salvo com!", "success");
                     },
                     error: function (jqXHR, exception) {
                         Swal.fire({

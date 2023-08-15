@@ -25,6 +25,10 @@ public class Compra extends BaseEntidade{
     @Temporal(TemporalType.DATE)
     public Date dataFim;
 
+    @ManyToOne
+    @JoinColumn(name = "plano_id")
+    public Plano plano;
+
 
     @ManyToOne
     @JoinColumn(name = "imobiliaria_id")

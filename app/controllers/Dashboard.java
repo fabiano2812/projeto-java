@@ -6,6 +6,10 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
 import security.AppSecurity;
+import utils.MoedaUtil;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 @Security.Authenticated(AppSecurity.class)
 public class Dashboard extends Controller {
@@ -20,6 +24,25 @@ public class Dashboard extends Controller {
         try {
             Long quantidadeCompras = Compra.buscarQuantidadeCompras();
             return ok(quantidadeCompras.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return badRequest();
+        }
+    }
+
+    @Transactional
+    public Result dashboardBuscaVenda() {
+        try {
+            List<Compra> compras = Compra.buscarTodas();
+
+            BigDecimal total = BigDecimal.ZERO;
+
+            for (Compra compra : compras) {
+                total = total.add(compra.plano.preco);
+            }
+            String totalFmt = MoedaUtil.formatarBigDecimal(total, 2);
+
+            return ok(totalFmt);
         } catch (Exception e) {
             e.printStackTrace();
             return badRequest();

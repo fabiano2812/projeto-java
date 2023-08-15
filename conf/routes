@@ -12,11 +12,11 @@ GET  /dashboard/page/inicial              controllers.Pessoas.abrirPaginaInicial
 #GET   /pagina/inicial             controllers.Pessoas.abrirPaginaInicial()
 
 # DASHBOARD
-GET   /dashboard                          controllers.Application.dashboard
-POST  /dashboard/buscarCompras            controllers.Dashboard.dashboardBuscarCompras
-#POST  /dashboard/buscaVenda               controllers.Dashboard.dashboardBuscaVenda
+GET   /dashboard                           controllers.Application.dashboard
+POST  /dashboard/buscarCompras             controllers.Dashboard.dashboardBuscarCompras
+POST  /dashboard/buscaVenda                controllers.Dashboard.dashboardBuscaVenda
 #POST  /dashboard/buscarAnuncio            controllers.Dashboard.dashboardBuscarAnuncio
-#POST  /dashboard/despesas                  controllers.Dashboard.despesas
+#POST  /dashboard/despesas                 controllers.Dashboard.despesas
 #POST  /dashboard/receitas                 controllers.Dashboard.receitas
 #POST  /dashboard/compromissos             controllers.Dashboard.compromissos
 #POST  /dashboard/atendimento              controllers.Dashboard.atendimento
@@ -54,6 +54,17 @@ GET   /cadastrar/novo/usuario         controllers.Usuarios.novo()
 POST  /usuarios/salvar             controllers.Usuarios.salvar
 GET   /perfil/usuarioLogado        controllers.Usuarios.perfilUsuario()
 
+
+# PLANOS
+GET   /planos                             controllers.Planos.inicio
+POST  /planos/filtrar                     controllers.Planos.filtrar
+POST  /plano/editar                       controllers.Planos.editar
+POST  /plano/salvar                       controllers.Planos.salvar
+POST  /plano/excluir                      controllers.Planos.excluir
+POST  /plano/abrirPopup                   controllers.Planos.planoAbrirPopup
+POST  /plano/salvarDados                  controllers.Planos.salvarNovaCompra
+GET   /plano/listagem                     controllers.Planos.listagem
+GET   /plano/abrirPopup                   controllers.Planos.planoAbrirPopup
 
 #PERFIL
 POST /perfil/salvar/alteracaoEmail                          controllers.Perfil.salvarAlteracaoEmail()

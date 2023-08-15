@@ -24,7 +24,7 @@ public class Acesso extends Controller {
     }
 
     @Transactional
-    public Result acessoLoguin() {
+    public Result acessoLogin() {
         DynamicForm dynamicForm = DynamicForm.form().bindFromRequest();
         String strEmail = dynamicForm.get("email");
         String strSenha = dynamicForm.get("senha");
@@ -44,31 +44,6 @@ public class Acesso extends Controller {
         } else {
             return ok();
         }
-    }
-
-    @Transactional
-    public Result acessoLogin() {
-        DynamicForm dynamicForm = DynamicForm.form().bindFromRequest();
-        String strEmail = dynamicForm.get("email");
-        String strSenha = dynamicForm.get("senha");
-
-        List<Usuario> usuarios = Usuario.buscarUsuariosPorEmail(strEmail);
-        if (usuarios != null) {
-            for (Usuario usuario : usuarios) {
-                if (verificarSenha(strSenha, usuario.getSenha(), usuario.getSalt())) {
-                    String id = usuario.getId().toString();
-                    session().put(AppSecurity.USUARIO_LOGADO, id);
-                    UsuarioBean usuarioBean = new UsuarioBean();
-
-                    Long strID = Long.valueOf(id);
-                    usuarioBean.setEmail(usuario.getEmail());
-                    usuarioBean.setId(strID);
-                    usuarioBean.setNome(usuario.getNome());
-                    return ok(Json.toJson(usuarioBean));
-                }
-            }
-        }
-        return ok();
     }
 
     public static String hashSenha(String senha, byte[] salt) {

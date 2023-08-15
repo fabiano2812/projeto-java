@@ -1,0 +1,10 @@
+@(plano: models.Plano)
+<div class="col-md-3">
+    <div class="info-box card">
+        <i class="bi bi-file-earmark-person"></i>
+        <h3>@plano.getNome</h3>
+        <p>@plano.getDescricao</p>
+        <button type="submit" class="btn btn-block btn-success" onclick="Plano.abrirPopup(@plano.getId)">
+         Fazer Compra</button>
+    </div>
+</div>

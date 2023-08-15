@@ -1,0 +1,33 @@
+@()
+@estilos = {
+
+}
+@scripts = {
+    <script src="@routes.Assets.versioned("js/plano/plano.js")" type="text/javascript"></script>
+    <script>
+        $(document).ready(function(){
+            Plano.init();
+        });
+    </script>
+}
+    @searchFilter = {
+        <div class="row">
+            @views.html.helpers.inputText("id", "id", "Id","", "", 12, 100)
+            @views.html.helpers.inputText("nome", "nome", "Nome","", "", 12, 100)
+            @views.html.helpers.inputText("descricao", "descricao", "Descrição","", "", 12, 100)
+        </div>
+    }
+    @tableHeader = {
+        <tr class="bg-light">
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Descricão</th>
+            <th>Ações</th>
+        </tr>
+    }
+    @buttonBar = {
+        <button type="button" class="btn font-weight-bolder btn-success" onclick="Plano.abrirEdicao()">
+            + Novo Plano
+        </button>
+    }
+@views.html.templateCRUD("Planos", buttonBar, tableHeader, searchFilter, estilos, scripts)

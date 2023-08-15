@@ -1,0 +1,12 @@
+@(planoId: java.lang.Long)
+<form method="post" id="formPopup">
+   <input type="hidden" name="planoId" value="@planoId">
+   @views.html.helpers.inputText("nome", "nome", "Nome","", "Digite o nome do plano...", 12, 300)
+   @views.html.helpers.inputText("email", "email", "Email","", "Digite o Email...", 12, 300)
+   @views.html.helpers.inputText("endereco", "endereco", "Endereco","", "Digite o Endereco...", 12, 300)
+   <div class="row">
+      @views.html.helpers.inputDate("dataInicio", "dataInicio", "Data Inicio",null, "Insira a data de inicio",  6)
+      @views.html.helpers.inputDate("dataFim", "dataFim", "Data fim",null, "Insira a data fim",  6)
+   </div>
+<button type="submit" class="btn btn-block btn-success">Comprar</button>
+</form>
